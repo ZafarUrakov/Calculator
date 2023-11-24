@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Calculator.Classes
 {
     public class Calculate
@@ -17,6 +12,30 @@ namespace Calculator.Classes
         public void Addition(double firstNumber, double secondNumber)
         {
             double result = firstNumber + secondNumber;
+            
+            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
+            $"Result: {result}");
+        }
+
+        public void Subtraction(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber - secondNumber;
+            
+            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
+            $"Result: {result}");
+        }
+
+        public void Division(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber / secondNumber;
+            
+            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
+            $"Result: {result}");
+        }
+
+        public void Multiplication(double firstNumber, double secondNumber)
+        {
+            double result = firstNumber * secondNumber;
             
             Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
             $"Result: {result}");
