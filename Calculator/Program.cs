@@ -4,37 +4,31 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        
         Console.WriteLine("Welcome to calculator!");
 
         Console.Write("Your name: ");
         string name = Console.ReadLine()!;
 
-        Calculate calculate = new Calculate(name);
-
         Console.Write("First number: ");
         double firstNumber = Convert.ToDouble(Console.ReadLine()!);
 
-        Console.Write("Function [+ | - | / | *]: ");
+        Console.Write("Function [+ | - | / | * | prc]: ");
         string function = Console.ReadLine()!;
 
         Console.Write("Second number: ");
         double secondNumber = Convert.ToDouble(Console.ReadLine()!);
 
-        switch(function)
+        if(function == "prc")
         {
-            case "+":
-                calculate.Addition(firstNumber, secondNumber);
-                break;
-            case "-":
-                calculate.Subtraction(firstNumber, secondNumber);
-                break;
-            case "/":
-                calculate.Division(firstNumber, secondNumber);
-                break;
-            case "*":
-                calculate.Multiplication(firstNumber, secondNumber);
-                break;
+            AdvancedCalculate advancedCalculate = 
+                new AdvancedCalculate(name, firstNumber, function, secondNumber);
+
+                advancedCalculate.CalcuateAllFunctions();
+        }
+        else
+        {
+            ICalculate calculate = new Calculate(name, firstNumber, function, secondNumber);
+            calculate.CalcuateAllFunctions();
         }
     }
 }

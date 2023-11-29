@@ -1,44 +1,54 @@
+using System.Security.Cryptography;
+
 namespace Calculator.Classes
 {
-    public class Calculate
+    public class Calculate : ICalculate
     {
-       private string name;
+       public string Name {get; set;}
+       public double FirstNumber{get; set;}
+       public double SecondNumber{get; set;}
+       public string Function { get; set; }
 
-        public Calculate(string name)
+        public Calculate(string name, double firstNumber, string function, double secondNumber)
         {
-            this.name = name;
+            Name = name;
+            FirstNumber = firstNumber;
+            SecondNumber = secondNumber;
+            Function = function;
         }
 
-        public void Addition(double firstNumber, double secondNumber)
+        public virtual void CalcuateAllFunctions()
         {
-            double result = firstNumber + secondNumber;
-            
-            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
-            $"Result: {result}");
+            double result = this.Function switch
+            {
+                "+" => Addition(this.FirstNumber, this.SecondNumber),
+                "-" => Subtraction(this.FirstNumber, this.SecondNumber),
+                "/" => Division(this.FirstNumber, this.SecondNumber),
+                "*" => Multiplication(this.FirstNumber, this.SecondNumber),
+                _ =>0
+            };
+
+            Console.WriteLine($"result: {this.FirstNumber} {this.Function} {this.SecondNumber} = {result}");
         }
 
-        public void Subtraction(double firstNumber, double secondNumber)
+        private double Addition(double firstNumber, double secondNumber)
         {
-            double result = firstNumber - secondNumber;
-            
-            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
-            $"Result: {result}");
+            return firstNumber + secondNumber;
         }
 
-        public void Division(double firstNumber, double secondNumber)
+        private double Subtraction(double firstNumber, double secondNumber)
         {
-            double result = firstNumber / secondNumber;
-            
-            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
-            $"Result: {result}");
+            return firstNumber - secondNumber;
         }
 
-        public void Multiplication(double firstNumber, double secondNumber)
+        private double Division(double firstNumber, double secondNumber)
         {
-            double result = firstNumber * secondNumber;
-            
-            Console.WriteLine($"Name: {name} | firsNumber: {firstNumber} , secondNumber: {secondNumber}\n" + 
-            $"Result: {result}");
+            return firstNumber / secondNumber;
+        }
+
+        private double Multiplication(double firstNumber, double secondNumber)
+        {
+            return firstNumber * secondNumber;
         }
     }
 }
